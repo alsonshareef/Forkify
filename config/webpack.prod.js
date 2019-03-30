@@ -1,28 +1,25 @@
-const path = require('path');
-const merge = require('webpack-merge')
-const common = require('./webpack.common')
+const path = require('path')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = merge(common, {
-    mode: 'production',
+module.exports = {
+    mode: "production",
+    entry: "./src/js/index.js",
     output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: 'main.js'
+        path: path.resolve(__dirname, "../dist"),
+        filename: "js/main.js"
+    },
+    devServer: {
+        contentBase: "dist"
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "./src/template.html"
-        }),
-        new CleanWebpackPlugin()
-    ],
-    module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
-          },
-        ],
-    }
-});
+        new HTMLWebpackPlugin({
+            template: './src/template.html',
+            minify: {
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                removeComments: true
+            }
+        })
+    ]
+}

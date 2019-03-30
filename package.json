@@ -1,24 +1,26 @@
 {
   "name": "forkify",
   "version": "1.0.0",
-  "description": "A recipe application",
+  "description": "Forkify",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.dev.js --open",
+    "start": "webpack-dev-server --config config/webpack.dev.js  --open",
     "build": "webpack --config config/webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alsonshareef/Forkify.git"
   },
   "author": "Alson Shareef",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alsonshareef/Forkify/issues"
+  },
+  "homepage": "https://github.com/alsonshareef/Forkify#readme",
   "devDependencies": {
-    "clean-webpack-plugin": "^2.0.1",
-    "css-loader": "^2.1.1",
-    "file-loader": "^3.0.1",
-    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1",
-    "webpack-merge": "^4.2.1"
+    "webpack-dev-server": "^3.2.1"
   }
 }
