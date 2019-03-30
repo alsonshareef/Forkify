@@ -1,2 +1,2 @@
-import "../index.css"
-console.log("index.js connected!")
+// Global app controller
+console.log("index.js is connected!")
