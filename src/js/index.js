@@ -1,5 +1,17 @@
 // Global app controller
-import name from './test'
+const API_Key = "55f16311f10d3ef766ae41e661a3bb55"
 
-const age = 23
-console.log(`My name is ${name} and I am ${age}.`)
+async function getResults(query){
+   try {
+    let result = await fetch(`https://www.food2fork.com/api/search?key=${API_Key}&q=${query}`)
+    .then(res => res.json())
+
+    let recipes = result.recipes
+
+    console.log(recipes)
+   } catch (error) {
+       alert(error)
+   }
+}
+
+getResults('pizza')
