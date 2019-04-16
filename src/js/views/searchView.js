@@ -1,16 +1,16 @@
-import { DOM_elements } from './DOM_elements';
+import { DOM } from './DOM';
 
 // Grab search query from input field
-export const getInput = () => DOM_elements.searchInput.value;
+export const getInput = () => DOM.searchInput.value;
 
 // Clear search query
 export const clearInput = () => {
-	DOM_elements.searchInput.value = '';
+	DOM.searchInput.value = '';
 };
 
 // Clear recipe result list
 export const clearResultList = () => {
-	DOM_elements.searchResultsList.innerHTML = '';
+	DOM.searchResultsList.innerHTML = '';
 };
 
 // Sets titles length to be < 17 characters for readability.
@@ -43,7 +43,7 @@ const renderRecipe = (recipe) => {
             </a>
         </li>
     `;
-	DOM_elements.searchResultsList.insertAdjacentHTML('beforeend', recipeHTML);
+	DOM.searchResultsList.insertAdjacentHTML('beforeend', recipeHTML);
 };
 
 // Render recipe HTML elements onto UI

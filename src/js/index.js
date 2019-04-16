@@ -4,7 +4,7 @@
 import Search from './models/Search';
 
 // Views
-import { DOM_elements } from './views/DOM_elements';
+import { DOM, renderLoader, clearLoader } from './views/DOM';
 import * as searchView from './views/searchView';
 
 /** Global State consists of:
@@ -27,17 +27,19 @@ const controlSearch = async () => {
 		// Prepare UI for results
 		searchView.clearInput();
 		searchView.clearResultList();
+		renderLoader(DOM.results);
 
 		// Search for recipes with new Search object method
 		await state.search.getResults();
 
 		// Render results on UI
+		clearLoader();
 		searchView.renderResults(state.search.recipes);
 	}
 };
 
 // Listens for submission of search input, and runs callback to handle search query.
-DOM_elements.searchForm.addEventListener('submit', (e) => {
+DOM.searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	controlSearch();
 });
