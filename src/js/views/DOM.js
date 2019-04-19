@@ -5,7 +5,8 @@ export const DOM = {
 	searchForm: document.querySelector('.search'),
 	searchInput: document.querySelector('.search__field'),
 	results: document.querySelector('.results'),
-	searchResultsList: document.querySelector('.results__list')
+	searchResultsList: document.querySelector('.results__list'),
+	searchResultsPages: document.querySelector('.results__pages')
 };
 
 // Class names to add dynamically instead of hard coding

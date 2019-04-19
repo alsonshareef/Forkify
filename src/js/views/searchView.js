@@ -46,5 +46,43 @@ const renderRecipe = (recipe) => {
 	DOM.searchResultsList.insertAdjacentHTML('beforeend', recipeHTML);
 };
 
-// Render recipe HTML elements onto UI
-export const renderResults = (recipes) => recipes.forEach(renderRecipe);
+// Creates button for pagination
+const createButton = (pageNum, type) => `
+	<button class="btn-inline results__btn--${type}" data-goto"${type === 'prev' ? pageNum - 1 : pageNum + 1}">
+		<svg class="search__icon">
+			<use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+		</svg>
+		<span>Page ${type === 'prev' ? pageNum - 1 : pageNum + 1}</span>
+	</button>
+`;
+
+// Determines what pagination buttons should be rendered
+const renderButton = (page, resultsNum, resultPerPage) => {
+	const totalPages = Math.ceil(resultsNum / resultPerPage);
+	let button;
+	if (page === 1 && totalPages > 1) {
+		// If on first page, show only next page button
+		button = createButton(page, 'next');
+	} else if (page === totalPages && totalPages > 1) {
+		// If on last page, show only previous page button
+		button = createButton(page, 'prev');
+	} else if (page < totalPages) {
+		// If somewhere inbetween, show previous and next page button
+		button = `
+			${createButton(page, 'prev')}
+			${createButton(page, 'next')}
+		`;
+	}
+	DOM.searchResultsPages.insertAdjacentHTML('afterbegin', button);
+};
+
+// Render recipe HTML elements and respective pagination buttons onto UI
+export const renderResults = (recipes, page = 1, resultPerPage = 10) => {
+	// Renders recipes for the current page.
+	const start = (page - 1) * resultPerPage;
+	const end = page * resultPerPage;
+	recipes.slice(start, end).forEach(renderRecipe);
+
+	// Renders pagination buttons for current page.
+	renderButton(page, recipes.length, resultPerPage);
+};
