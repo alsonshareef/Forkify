@@ -11,6 +11,7 @@ export const clearInput = () => {
 // Clear recipe result list
 export const clearResultList = () => {
 	DOM.searchResultsList.innerHTML = '';
+	DOM.searchResultsPages.innerHTML = '';
 };
 
 // Sets titles length to be < 17 characters for readability.
@@ -48,11 +49,11 @@ const renderRecipe = (recipe) => {
 
 // Creates button for pagination
 const createButton = (pageNum, type) => `
-	<button class="btn-inline results__btn--${type}" data-goto"${type === 'prev' ? pageNum - 1 : pageNum + 1}">
+	<button class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? pageNum - 1 : pageNum + 1}">
+		<span>Page ${type === 'prev' ? pageNum - 1 : pageNum + 1}</span>
 		<svg class="search__icon">
 			<use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
 		</svg>
-		<span>Page ${type === 'prev' ? pageNum - 1 : pageNum + 1}</span>
 	</button>
 `;
 

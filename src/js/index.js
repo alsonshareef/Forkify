@@ -43,3 +43,13 @@ DOM.searchForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	controlSearch();
 });
+
+// Listens for clicks on pagination buttons, clears UI and renders respective recipes and buttons.
+DOM.searchResultsPages.addEventListener('click', (e) => {
+	const btn = e.target.closest('.btn-inline');
+	if (btn) {
+		const goToPage = Number(btn.dataset.goto);
+		searchView.clearResultList();
+		searchView.renderResults(state.search.recipes, goToPage);
+	}
+});
